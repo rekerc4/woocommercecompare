@@ -14,8 +14,8 @@ $unique_id = 'x';
 
 function bbloomer_custom_action() {
     global $product; 
-    $sku = $product->get_sku(); 
-    echo '<div class="wocompare-add-button" id="woocompareAddButton'.$unique_id.'" product_id_data="'.$sku.'"> &#9744; Compare</div>';
+    $id = $product->get_id(); 
+    echo '<div class="wocompare-add-button" id="woocompareAddButton'.$unique_id.'" product_id_data="'.$id.'"> &#9744; Compare</div>';
 }
 
 ?>
