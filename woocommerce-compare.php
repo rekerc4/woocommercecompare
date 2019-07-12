@@ -18,6 +18,7 @@ if(! defined( 'ABSPATH')) exit;
 add_filter('template_include', 'iframe_page_template'); 
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/enqueu.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/ajax.php';
 
 if( is_admin()){
     require_once plugin_dir_path( __FILE__ ) . 'admin/admin-menu.php';
