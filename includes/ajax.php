@@ -22,9 +22,27 @@ function woocompare_ajax_handler(){
 
     check_ajax_referer( 'ajax_public', 'nonce' ); 
 
-    $new = wc_get_product(79); 
+    $product_ids = $_POST['theCurIds']; 
 
-    echo esc_html( $new );
+    $products_array = array(); 
+
+    $object_respoonse = array(); 
+
+    foreach($product_ids as $key => $p_id){
+        $product = wc_get_product($p_id); 
+        $get_cat_args = array('orderby' => 'name'); 
+        $obj_constructor = array('name' => $product->get_name(), 'type' => $product->get_type(), 'image' => $product->get_image(), 'sku' => $product->get_sku(), 'categories' => wp_get_post_terms( $product->id, 'product_cat',  $get_cat_args )); 
+        if($product->is_type( 'variable' )){
+
+        }
+        else{
+
+        }
+        array_push($products_array, $product); 
+        array_push($object_respoonse, $obj_constructor); 
+    }
+
+    echo json_encode($object_respoonse);
 
 	wp_die();
 
