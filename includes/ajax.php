@@ -26,12 +26,14 @@ function woocompare_ajax_handler(){
 
     $products_array = array(); 
 
-    $object_respoonse = array(); 
+    $object_response = array(); 
 
     foreach($product_ids as $key => $p_id){
         $product = wc_get_product($p_id); 
         $get_cat_args = array('orderby' => 'name'); 
-        $obj_constructor = array('name' => $product->get_name(), 'type' => $product->get_type(), 'image' => $product->get_image(), 'sku' => $product->get_sku(), 'categories' => wp_get_post_terms( $product->id, 'product_cat',  $get_cat_args )); 
+        $prod_cats = get_the_term_list( $p_id, 'product_cat' );
+        $image =   get_the_post_thumbnail_url($p_id); 
+        $obj_constructor = array('name' => $product->get_name(), 'type' => $product->get_type(), 'image' => $image, 'sku' => $product->get_sku(), 'categories' => $prod_cats); 
         if($product->is_type( 'variable' )){
 
         }
@@ -39,10 +41,10 @@ function woocompare_ajax_handler(){
 
         }
         array_push($products_array, $product); 
-        array_push($object_respoonse, $obj_constructor); 
+        array_push($object_response, $obj_constructor); 
     }
 
-    echo json_encode($object_respoonse);
+    echo json_encode($object_response);
 
 	wp_die();
 

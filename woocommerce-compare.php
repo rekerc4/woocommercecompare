@@ -15,8 +15,6 @@ if(! defined( 'ABSPATH')) exit;
 ?>
 <?php 
 
-add_filter('template_include', 'iframe_page_template'); 
-
 require_once plugin_dir_path( __FILE__ ) . 'includes/enqueu.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/ajax.php';
 

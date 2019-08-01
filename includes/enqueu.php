@@ -15,7 +15,6 @@ function woocompare_enqueues(){
     wp_enqueue_style('colorbox', $plugin_path . 'assets/css/colorbox.css');
 }
 
-//wp_script_is('jquery', 'enqueued')
 if(!wp_script_is('jquery', 'enqueued')){
     function woocompare_enqueue_jquery(){
         $plugin_path = plugin_dir_url(dirname(__FILE__));
